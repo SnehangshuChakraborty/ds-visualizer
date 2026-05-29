@@ -59,6 +59,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </li>
           <li>
             <button
+              className={`sidebar-item-btn ${selectedProblem === 'container' ? 'active' : ''}`}
+              onClick={() => setSelectedProblem('container')}
+            >
+              <span>Container with Most Water (11)</span>
+              <span className="sidebar-item-bullet"></span>
+            </button>
+          </li>
+          <li>
+            <button
               className={`sidebar-item-btn ${selectedProblem === '2sum' ? 'active' : ''}`}
               onClick={() => setSelectedProblem('2sum')}
             >

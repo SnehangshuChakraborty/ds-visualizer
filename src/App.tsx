@@ -13,6 +13,7 @@ import Sidebar from './components/common/Sidebar';
 import ThreeSumVisualizer from './components/problems/arrays/threeSum/ThreeSumVisualizer';
 import MedianVisualizer from './components/problems/arrays/medianOfTwoSortedArrays/MedianVisualizer';
 import CoinChange2Visualizer from './components/problems/arrays/coinChange2/CoinChange2Visualizer';
+import ContainerVisualizer from './components/problems/arrays/containerWithMostWater/ContainerVisualizer';
 
 function App() {
   const [theme, setTheme] = useState<Theme>('purple');
@@ -77,6 +78,8 @@ function App() {
             <MedianVisualizer celebrate={celebrate} />
           ) : selectedProblem === 'coinchange2' ? (
             <CoinChange2Visualizer celebrate={celebrate} />
+          ) : selectedProblem === 'container' ? (
+            <ContainerVisualizer celebrate={celebrate} quizMode={quizMode} />
           ) : (
             /* ========================================================================= */
             /* TWO SUM COMING SOON PREVIEW */

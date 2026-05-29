@@ -12,7 +12,7 @@ export interface AlgoStep {
 }
 
 export type Theme = 'purple' | 'cyan' | 'amber' | 'aurora';
-export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2';
+export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container';
 
 export interface CoinChange2Step {
   coins: number[];
@@ -56,3 +56,17 @@ export interface MedianStep {
   narrative: string;
   median: number | null;
 }
+
+export interface ContainerStep {
+  heights: number[];
+  left: number;
+  right: number;
+  currentWidth: number;
+  currentHeight: number;
+  currentArea: number;
+  maxArea: number;
+  highlightedLine: number;
+  status: 'start' | 'evaluating' | 'calculating' | 'update-max' | 'move-left' | 'move-right' | 'done';
+  message: string;
+}
+

@@ -1,0 +1,155 @@
+/* Premium Custom Stylesheet for the Container with Most Water Workspace */
+
+/* SVG absolute canvas */
+.water-overlay-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Semi-transparent glowing blue liquid fill */
+.water-basin-fill {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: wave-flow 4s infinite ease-in-out;
+  transform-origin: bottom;
+  box-shadow: inset 0 20px 20px rgba(56, 189, 248, 0.2);
+}
+
+/* Bright neon glass-glowing water surface line */
+.water-surface-line {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 0;
+}
+
+/* Highlight shorter/bottleneck wall */
+.array-item-wrapper.weak-link .array-bar {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.45) !important;
+  animation: weak-pulse 1.5s infinite ease-in-out;
+}
+
+/* Liquid flow waving keyframes */
+@keyframes wave-flow {
+  0%, 100% {
+    clip-path: polygon(
+      0% 45%, 16% 44%, 33% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%,
+      100% 100%, 0% 100%
+    );
+  }
+  50% {
+    clip-path: polygon(
+      0% 48%, 18% 57%, 35% 58%, 51% 52%, 67% 44%, 83% 45%, 100% 50%,
+      100% 100%, 0% 100%
+    );
+  }
+}
+
+/* Bottleneck wall alert pulse */
+@keyframes weak-pulse {
+  0%, 100% {
+    transform: scale(1.02);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(0.98);
+    filter: brightness(0.85);
+  }
+}
+
+/* Squeezing pointers micro-transition effects */
+.active-left {
+  animation: squeeze-pointer-left 0.4s ease-out;
+}
+
+.active-right {
+  animation: squeeze-pointer-right 0.4s ease-out;
+}
+
+@keyframes squeeze-pointer-left {
+  0% {
+    transform: translateX(-15px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes squeeze-pointer-right {
+  0% {
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Custom visualizer chart alignment adjustment */
+.array-outer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.array-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 680px;
+  padding: 0 1rem;
+}
+
+/* Dynamic styling for the bar charts */
+.array-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 38px;
+  cursor: default;
+}
+
+.array-bar {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+  padding-top: 6px;
+}
+
+.array-value {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--theme-text-primary);
+}
+
+.array-index {
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+}
+
+.pointer-labels {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.pointer-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  text-shadow: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
