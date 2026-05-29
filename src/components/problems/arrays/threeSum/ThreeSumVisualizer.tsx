@@ -7,7 +7,8 @@ import { TraceSandbox } from './components/TraceSandbox';
 import { AnalogyCheatSheet } from './components/AnalogyCheatSheet';
 
 // Constants, utils, hooks
-import { PRESETS, JAVA_CODE_LINES, BOUNDARY_LINES, BOUNDARY_CONDITIONS } from './constants/threeSumData';
+import { PRESETS, BOUNDARY_LINES, BOUNDARY_CONDITIONS } from './constants/threeSumData';
+import threeSumJava from '../java_codes/ThreeSum.java?raw';
 import { generateSteps } from './utils/algoGenerator';
 import { useInterval } from '../../../../hooks/useInterval';
 
@@ -239,7 +240,7 @@ export const ThreeSumVisualizer: React.FC<ThreeSumVisualizerProps> = ({
           wrongLineHighlight={wrongLineHighlight}
           activeBoundaryTip={activeBoundaryTip}
           setActiveBoundaryTip={setActiveBoundaryTip}
-          codeLines={JAVA_CODE_LINES}
+          codeRaw={threeSumJava}
           boundaryLines={BOUNDARY_LINES}
           boundaryConditions={BOUNDARY_CONDITIONS}
         />

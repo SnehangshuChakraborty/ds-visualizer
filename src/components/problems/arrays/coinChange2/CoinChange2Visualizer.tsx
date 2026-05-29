@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import './CoinChange2Visualizer.css';
 
-import { COIN_CHANGE2_PRESETS, COIN_CHANGE2_JAVA_CODE_LINES } from './constants/coinChange2Data';
+import { COIN_CHANGE2_PRESETS } from './constants/coinChange2Data';
+import coinChange2Java from '../java_codes/CoinChange2.java?raw';
 import { generateCoinChange2Steps } from './utils/coinChange2Generator';
 import { useInterval } from '../../../../hooks/useInterval';
 import { CodeEditor } from '../../../common/CodeEditor';
@@ -177,7 +178,7 @@ const CoinChange2Visualizer: React.FC<CoinChange2VisualizerProps> = ({ celebrate
         {/* LEFT: Code Editor */}
         <CodeEditor
           currentStepHighlightLine={step.highlightedLine}
-          codeLines={COIN_CHANGE2_JAVA_CODE_LINES}
+          codeRaw={coinChange2Java}
         />
 
         {/* RIGHT: DP Table Sandbox */}

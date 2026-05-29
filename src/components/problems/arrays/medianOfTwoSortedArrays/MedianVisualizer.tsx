@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import './MedianVisualizer.css';
 
 // Types, Constants, Utilities
-import { MEDIAN_PRESETS, MEDIAN_JAVA_CODE_LINES } from './constants/medianData';
+import { MEDIAN_PRESETS } from './constants/medianData';
+import medianJava from '../java_codes/Median.java?raw';
 import { generateMedianSteps } from './utils/medianGenerator';
 import { useInterval } from '../../../../hooks/useInterval';
 
@@ -205,7 +206,7 @@ export const MedianVisualizer: React.FC<MedianVisualizerProps> = ({
         {/* LEFT COLUMN: IDE Java Code Editor */}
         <CodeEditor
           currentStepHighlightLine={currentStep.highlightedLine}
-          codeLines={MEDIAN_JAVA_CODE_LINES}
+          codeRaw={medianJava}
         />
 
         {/* RIGHT COLUMN: Visualizer Workspace Sandbox */}

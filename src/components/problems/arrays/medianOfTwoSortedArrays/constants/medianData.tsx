@@ -4,38 +4,3 @@ export const MEDIAN_PRESETS = [
   { name: 'Extreme Overlap', arrayA: [1, 2], arrayB: [3, 4, 5, 6] },
   { name: 'Single Top Element', arrayA: [10], arrayB: [1, 2, 3, 4, 5, 6, 7, 8] }
 ];
-
-export const MEDIAN_JAVA_CODE_LINES = [
-  { number: 1, content: <><span className="syntax-keyword">public class</span> <span className="syntax-class">Solution</span> &#123;</> },
-  { number: 2, content: <>    <span className="syntax-keyword">public double</span> <span className="syntax-method">findMedianSortedArrays</span>(<span className="syntax-type">int</span>[] nums1, <span className="syntax-type">int</span>[] nums2) &#123;</> },
-  { number: 3, content: <>        <span className="syntax-keyword">if</span> (nums1.length &gt; nums2.length) &#123;</> },
-  { number: 4, content: <>            <span className="syntax-keyword">return</span> <span className="syntax-method">findMedianSortedArrays</span>(nums2, nums1); <span className="syntax-comment">// Swap</span></> },
-  { number: 5, content: <>        &#125;</> },
-  { number: 6, content: <>        <span className="syntax-type">int</span> m = nums1.length, n = nums2.length;</> },
-  { number: 7, content: <>        <span className="syntax-type">int</span> low = <span className="syntax-literal">0</span>, high = m;</> },
-  { number: 8, content: "" },
-  { number: 9, content: <>        <span className="syntax-keyword">while</span> (low &lt;= high) &#123;</> },
-  { number: 10, content: <>            <span className="syntax-type">int</span> cutA = (low + high) / <span className="syntax-literal">2</span>;</> },
-  { number: 11, content: <>            <span className="syntax-type">int</span> cutB = (m + n + <span className="syntax-literal">1</span>) / <span className="syntax-literal">2</span> - cutA;</> },
-  { number: 12, content: "" },
-  { number: 13, content: <>            <span className="syntax-type">int</span> maxLeftA = (cutA == <span className="syntax-literal">0</span>) ? <span className="syntax-type">Integer</span>.MIN_VALUE : nums1[cutA - <span className="syntax-literal">1</span>];</> },
-  { number: 14, content: <>            <span className="syntax-type">int</span> minRightA = (cutA == m) ? <span className="syntax-type">Integer</span>.MAX_VALUE : nums1[cutA];</> },
-  { number: 15, content: <>            <span className="syntax-type">int</span> maxLeftB = (cutB == <span className="syntax-literal">0</span>) ? <span className="syntax-type">Integer</span>.MIN_VALUE : nums2[cutB - <span className="syntax-literal">1</span>];</> },
-  { number: 16, content: <>            <span className="syntax-type">int</span> minRightB = (cutB == n) ? <span className="syntax-type">Integer</span>.MAX_VALUE : nums2[cutB];</> },
-  { number: 17, content: "" },
-  { number: 18, content: <>            <span className="syntax-keyword">if</span> (maxLeftA &lt;= minRightB &amp;&amp; maxLeftB &lt;= minRightA) &#123;</> },
-  { number: 19, content: <>                <span className="syntax-keyword">if</span> ((m + n) % <span className="syntax-literal">2</span> == <span className="syntax-literal">1</span>) &#123;</> },
-  { number: 20, content: <>                    <span className="syntax-keyword">return</span> Math.<span className="syntax-method">max</span>(maxLeftA, maxLeftB);</> },
-  { number: 21, content: <>                &#125; <span className="syntax-keyword">else</span> &#123;</> },
-  { number: 22, content: <>                    <span className="syntax-keyword">return</span> (Math.<span className="syntax-method">max</span>(maxLeftA, maxLeftB) + Math.<span className="syntax-method">min</span>(minRightA, minRightB)) / <span className="syntax-literal">2.0</span>;</> },
-  { number: 23, content: <>                &#125;</> },
-  { number: 24, content: <>            &#125; <span className="syntax-keyword">else if</span> (maxLeftA &gt; minRightB) &#123;</> },
-  { number: 25, content: <>                high = cutA - <span className="syntax-literal">1</span>; <span className="syntax-comment">// Squeeze Left</span></> },
-  { number: 26, content: <>            &#125; <span className="syntax-keyword">else</span> &#123;</> },
-  { number: 27, content: <>                low = cutA + <span className="syntax-literal">1</span>;  <span className="syntax-comment">// Squeeze Right</span></> },
-  { number: 28, content: <>            &#125;</> },
-  { number: 29, content: <>        &#125;</> },
-  { number: 30, content: <>        <span className="syntax-keyword">return</span> <span className="syntax-literal">0.0</span>;</> },
-  { number: 31, content: <>    &#125;</> },
-  { number: 32, content: <>&#125;</> }
-];
