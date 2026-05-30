@@ -77,6 +77,34 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </li>
         </ul>
       </div>
+
+      <div className="sidebar-category" style={{ marginTop: '1.5rem' }}>
+        <div className="category-title">
+          <span className="category-icon">🔤</span>
+          <span>Strings</span>
+        </div>
+
+        <ul className="sidebar-list">
+          <li>
+            <button
+              className={`sidebar-item-btn ${selectedProblem === 'longest-substring' ? 'active' : ''}`}
+              onClick={() => setSelectedProblem('longest-substring')}
+            >
+              <span>Longest Substring</span>
+              <span className="sidebar-item-bullet"></span>
+            </button>
+          </li>
+          <li>
+            <button
+              className={`sidebar-item-btn ${selectedProblem === 'palindrome' ? 'active' : ''}`}
+              onClick={() => setSelectedProblem('palindrome')}
+            >
+              <span>Valid Palindrome</span>
+              <span className="coming-soon-badge">Soon</span>
+            </button>
+          </li>
+        </ul>
+      </div>
     </aside>
   );
 };

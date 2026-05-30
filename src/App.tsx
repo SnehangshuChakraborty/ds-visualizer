@@ -14,6 +14,7 @@ import ThreeSumVisualizer from './components/problems/arrays/threeSum/ThreeSumVi
 import MedianVisualizer from './components/problems/arrays/medianOfTwoSortedArrays/MedianVisualizer';
 import CoinChange2Visualizer from './components/problems/arrays/coinChange2/CoinChange2Visualizer';
 import ContainerVisualizer from './components/problems/arrays/containerWithMostWater/ContainerVisualizer';
+import LongestSubstringVisualizer from './components/problems/strings/longestSubstringWithoutRepeatingCharacters/LongestSubstringVisualizer';
 
 function App() {
   const [theme, setTheme] = useState<Theme>('purple');
@@ -80,6 +81,36 @@ function App() {
             <CoinChange2Visualizer celebrate={celebrate} />
           ) : selectedProblem === 'container' ? (
             <ContainerVisualizer celebrate={celebrate} quizMode={quizMode} />
+          ) : selectedProblem === 'longest-substring' ? (
+            <LongestSubstringVisualizer celebrate={celebrate} />
+          ) : selectedProblem === 'palindrome' ? (
+            <div className="coming-soon-container">
+              <div className="coming-soon-card">
+                <div className="coming-soon-icon">✨</div>
+                <h2 className="coming-soon-title">Valid Palindrome Visualizer</h2>
+                <p className="coming-soon-desc">
+                  We are building an ultra-premium visual sandbox for LeetCode #125 <strong>Valid Palindrome</strong>.
+                  Master two-pointer character matching with live whitespace cleaning, case insensitivity filters, and stepping pointers!
+                </p>
+
+                <div className="coming-soon-teaser">
+                  <div className="teaser-header">Preview: Two-Pointer Character Symmetry</div>
+                  <div className="teaser-mock-array">
+                    <span className="teaser-mock-item left">r</span>
+                    <span className="teaser-mock-item">a</span>
+                    <span className="teaser-mock-item">c</span>
+                    <span className="teaser-mock-item">e</span>
+                    <span className="teaser-mock-item">c</span>
+                    <span className="teaser-mock-item">a</span>
+                    <span className="teaser-mock-item right">r</span>
+                  </div>
+                  <div className="teaser-mock-eq">
+                    <span>s[L] ('r') == s[R] ('r')</span>
+                    <span className="teaser-tag-eq">Symmetric Character!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           ) : (
             /* ========================================================================= */
             /* TWO SUM COMING SOON PREVIEW */

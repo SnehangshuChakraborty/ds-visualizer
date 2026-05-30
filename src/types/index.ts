@@ -12,7 +12,7 @@ export interface AlgoStep {
 }
 
 export type Theme = 'purple' | 'cyan' | 'amber' | 'aurora';
-export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container';
+export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container' | 'longest-substring' | 'palindrome';
 
 export interface CoinChange2Step {
   coins: number[];
@@ -69,4 +69,17 @@ export interface ContainerStep {
   status: 'start' | 'evaluating' | 'calculating' | 'update-max' | 'move-left' | 'move-right' | 'done';
   message: string;
 }
+
+export interface LongestSubstringStep {
+  s: string;
+  left: number;
+  right: number;
+  charSet: string[];         // list of unique characters currently in the sliding window
+  maxLength: number;
+  currentLength: number;
+  highlightedLine: number;
+  status: 'init' | 'checking' | 'duplicate' | 'shrink' | 'add' | 'update-max' | 'done';
+  message: string;
+}
+
 
