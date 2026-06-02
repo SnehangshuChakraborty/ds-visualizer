@@ -2,7 +2,8 @@ import java.util.*;
 
 class Solution {
     public String longestPalindrome(String s) {
-        if (s == null || s.length() < 1) return "";
+        if (s == null || s.length() < 1)
+            return "";
         int start = 0;
         int end = 0;
 

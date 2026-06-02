@@ -1,10 +1,10 @@
 # 📊 DS Visualizer — High-Fidelity Interactive Algorithm Sandbox
 
-[![License: MIT](https://img.shields.ly/badge/License-MIT-purple.svg)](https://opensource.org/licenses/MIT)
-[![React](https://img.shields.ly/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Vite](https://img.shields.ly/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TypeScript](https://img.shields.ly/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![CSS3](https://img.shields.ly/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://www.w3.org/Style/CSS/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://www.w3.org/Style/CSS/)
 
 Welcome to **DS Visualizer**—a breathtaking, highly interactive, and gamified open-source React application designed to transform complex data structures and algorithm analysis into an engaging, visual sandbox. 
 
@@ -63,7 +63,7 @@ To guarantee zero lags during automatic scrubbing, rewind, fast-forward, and qui
 ```mermaid
 graph TD
     A[User Inputs / Dataset Presets] -->|useMemo| B[generateSteps Utility]
-    B -->|Precomputes Step States List| C[steps: AlgoStep[]]
+    B -->|Precomputes Step States List| C["steps: AlgoStep[]"]
     C -->|currentStepIndex| D[App.tsx State Controller]
     D -->|Props| E[CodeEditor: Highlights & Alerts]
     D -->|Props| F[Visualizers: Active Grids & Graph Bars]
