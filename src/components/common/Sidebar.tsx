@@ -77,6 +77,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </li>
           <li>
             <button
+              className={`sidebar-item-btn ${selectedProblem === 'search-rotated-sorted-array' ? 'active' : ''}`}
+              onClick={() => setSelectedProblem('search-rotated-sorted-array')}
+            >
+              <span>Search Rotated Array (33)</span>
+              <span className="sidebar-item-bullet"></span>
+            </button>
+          </li>
+          <li>
+            <button
               className={`sidebar-item-btn ${selectedProblem === '2sum' ? 'active' : ''}`}
               onClick={() => setSelectedProblem('2sum')}
             >
