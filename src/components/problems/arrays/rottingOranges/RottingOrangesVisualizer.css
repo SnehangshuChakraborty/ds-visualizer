@@ -1,0 +1,211 @@
+/* Premium custom styles for Rotting Oranges (LeetCode 994) Visualizer */
+
+.orange-grid-outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Orange grid cells styling */
+.orange-cell {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: visible;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Empty slots */
+.orange-cell.cell-empty {
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px dashed rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Fresh orange cell hover bounces */
+.orange-cell.cell-fresh:hover .orange-sphere.fresh {
+  transform: scale(1.15) translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 14px rgba(255, 69, 0, 0.6);
+}
+
+.orange-sphere {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Toxic glowing green pulse animation for rotten oranges */
+.animate-toxic-pulsing {
+  animation: toxic-glow-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes toxic-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(30, 63, 32, 0.4);
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.45);
+    filter: brightness(1.25);
+    transform: scale(1.04);
+  }
+}
+
+/* Flash animation for newly rotted wavefronts */
+.orange-cell.cell-newly-rotten {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: #10b981 !important;
+  animation: newly-rotten-flash 1.2s infinite ease-in-out;
+}
+
+@keyframes newly-rotten-flash {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.65);
+    filter: brightness(1.1);
+  }
+}
+
+/* Dynamic highlighting borders */
+.border-active-orange {
+  border-color: #fbbf24 !important;
+}
+
+.border-scanning-neighbor {
+  animation: dashed-border-spin 2s linear infinite;
+}
+
+@keyframes dashed-border-spin {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 10;
+  }
+}
+
+/* Simulation cards hover overlays */
+.orange-grid-container:hover {
+  border-color: rgba(16, 185, 129, 0.1) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Premium active scanning row highlight (Amber/Gold scanner) */
+.orange-cell.cell-row-scanning {
+  border: 1.5px solid rgba(251, 191, 36, 0.8) !important;
+  background: rgba(251, 191, 36, 0.08) !important;
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.3) !important;
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+/* Premium active scanning column highlight (Cyan/Blue scanner) */
+.orange-cell.cell-col-scanning {
+  border: 1.5px solid rgba(6, 182, 212, 0.8) !important;
+  background: rgba(6, 182, 212, 0.08) !important;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3) !important;
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+/* Premium active scanning cell intersection highlight (Purple target scanner) */
+.orange-cell.cell-active-scanning {
+  border: 2.5px solid var(--theme-accent) !important;
+  background: rgba(var(--theme-accent-rgb, 168, 85, 247), 0.18) !important;
+  box-shadow: 0 0 18px rgba(var(--theme-accent-rgb, 168, 85, 247), 0.45) !important;
+  transform: scale(1.08);
+  z-index: 3;
+  animation: scanning-cell-pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes scanning-cell-pulse {
+  0%, 100% {
+    transform: scale(1.08);
+    box-shadow: 0 0 18px rgba(var(--theme-accent-rgb, 168, 85, 247), 0.45) !important;
+  }
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 0 25px rgba(var(--theme-accent-rgb, 168, 85, 247), 0.6) !important;
+  }
+}
+
+/* Responsive SVG Laser Beam scan indicators */
+.laser-glow-beam {
+  animation: laser-pulse 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes laser-pulse {
+  0% {
+    stroke-opacity: 0.35;
+    stroke-width: 6px;
+    filter: drop-shadow(0 0 4px #06b6d4);
+  }
+  100% {
+    stroke-opacity: 0.75;
+    stroke-width: 10px;
+    filter: drop-shadow(0 0 12px #06b6d4) drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+  }
+}
+
+/* Trace Inspector glassmorphic dashboard card */
+.trace-inspector-card {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 0.85rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1.5px solid rgba(251, 191, 36, 0.5);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.15), 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inspector-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #fbbf24;
+  margin-bottom: 0.45rem;
+}
+
+.inspector-eq {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--theme-text-primary);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.highlight-tag {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.text-active-var {
+  color: var(--theme-text-primary) !important;
+  opacity: 1 !important;
+  font-weight: 700;
+  animation: var-pulse 1s infinite alternate;
+}
+
+@keyframes var-pulse {
+  from { text-shadow: 0 0 2px rgba(255, 255, 255, 0.1); }
+  to { text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); }
+}
+
+.text-muted {
+  color: var(--theme-text-muted) !important;
+  opacity: 0.5;
+}

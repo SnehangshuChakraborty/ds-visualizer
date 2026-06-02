@@ -1,0 +1,278 @@
+/* Premium Custom Stylesheet for Longest Palindromic Substring Visualizer */
+
+.string-outer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.string-bubble-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1.5rem;
+  min-width: max-content;
+}
+
+.char-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 46px;
+}
+
+.char-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.char-value {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--theme-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.char-index {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--theme-text-muted);
+}
+
+/* Center Highlight */
+.char-bubble.border-center-active {
+  border-color: var(--theme-accent) !important;
+  background: rgba(var(--theme-accent-rgb, 168, 85, 247), 0.15) !important;
+  box-shadow: 0 0 16px rgba(var(--theme-accent-rgb, 168, 85, 247), 0.45) !important;
+  transform: scale(1.05);
+}
+
+/* Symmetrical match glow */
+.char-bubble.match-glow {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.15) !important;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.6) !important;
+  transform: scale(1.08);
+}
+
+.char-bubble.match-glow .char-value {
+  color: #10b981 !important;
+}
+
+/* Symmetrical mismatch glow */
+.char-bubble.mismatch-glow {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.15) !important;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.65) !important;
+  animation: mismatch-pulse 1.2s infinite ease-in-out;
+}
+
+.char-bubble.mismatch-glow .char-value {
+  color: #ef4444 !important;
+}
+
+@keyframes mismatch-pulse {
+  0%, 100% {
+    transform: scale(1.06);
+    filter: brightness(1.1);
+  }
+  50% {
+    transform: scale(0.94);
+    filter: brightness(0.85);
+  }
+}
+
+/* Confirmed Active Inner Palindrome */
+.char-bubble.in-palindrome-glow {
+  background: rgba(6, 182, 212, 0.08) !important;
+  border-color: #06b6d4 !important;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3) !important;
+}
+
+.char-bubble.in-palindrome-glow .char-value {
+  color: var(--theme-text-primary);
+}
+
+/* Persistent Gold Best Record Substring */
+.char-bubble.best-champion-border {
+  border-top: 3px solid #fbbf24 !important;
+  border-bottom: 3px solid #fbbf24 !important;
+  box-shadow: 0 0 14px rgba(251, 191, 54, 0.25) !important;
+}
+
+/* Pointer badges styling */
+.pointer-labels {
+  display: flex;
+  gap: 0.15rem;
+  justify-content: center;
+  position: absolute;
+  bottom: -1.45rem;
+  width: 100%;
+}
+
+.pointer-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+.pointer-badge.left {
+  background: var(--theme-accent);
+  color: #000;
+}
+
+.pointer-badge.right {
+  background: var(--theme-secondary, #ec4899);
+  color: #fff;
+}
+
+.pointer-badge.center-badge {
+  background: #fbbf24;
+  color: #000;
+}
+
+/* Math comparison card */
+.math-comparison-card {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.math-card-header {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.math-card-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-accent);
+}
+
+.math-card-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--theme-text-muted);
+  margin-top: 0.15rem;
+}
+
+.math-card-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.math-card-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.math-node-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--theme-text-muted);
+}
+
+.math-node-label.green {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.math-node-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--theme-text-secondary);
+  transition: all 0.3s ease;
+}
+
+.math-node-box.active {
+  background: rgba(var(--theme-accent-rgb, 168, 85, 247), 0.08);
+  border: 1.5px solid var(--theme-accent);
+  color: var(--theme-accent);
+  box-shadow: 0 0 10px rgba(var(--theme-accent-rgb, 168, 85, 247), 0.25);
+}
+
+.math-node-box.result {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--theme-text-primary);
+}
+
+.math-node-box.result.pulse-active {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1.5px solid #10b981 !important;
+  color: #10b981 !important;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.35) !important;
+  animation: pulse-green 1.5s infinite ease-in-out;
+}
+
+.math-node-vs {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.math-card-footer {
+  margin-top: 0.85rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--theme-text-secondary);
+  line-height: 1.4;
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    transform: scale(0.95);
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.5);
+  }
+}

@@ -68,6 +68,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </li>
           <li>
             <button
+              className={`sidebar-item-btn ${selectedProblem === 'rotting-oranges' ? 'active' : ''}`}
+              onClick={() => setSelectedProblem('rotting-oranges')}
+            >
+              <span>Rotting Oranges (994)</span>
+              <span className="sidebar-item-bullet"></span>
+            </button>
+          </li>
+          <li>
+            <button
               className={`sidebar-item-btn ${selectedProblem === '2sum' ? 'active' : ''}`}
               onClick={() => setSelectedProblem('2sum')}
             >
@@ -99,8 +108,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
               className={`sidebar-item-btn ${selectedProblem === 'palindrome' ? 'active' : ''}`}
               onClick={() => setSelectedProblem('palindrome')}
             >
-              <span>Valid Palindrome</span>
-              <span className="coming-soon-badge">Soon</span>
+              <span>Longest Palindrome</span>
+              <span className="sidebar-item-bullet"></span>
             </button>
           </li>
         </ul>

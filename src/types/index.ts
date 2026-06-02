@@ -12,7 +12,7 @@ export interface AlgoStep {
 }
 
 export type Theme = 'purple' | 'cyan' | 'amber' | 'aurora';
-export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container' | 'longest-substring' | 'palindrome';
+export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container' | 'longest-substring' | 'palindrome' | 'rotting-oranges';
 
 export interface CoinChange2Step {
   coins: number[];
@@ -81,5 +81,35 @@ export interface LongestSubstringStep {
   status: 'init' | 'checking' | 'duplicate' | 'shrink' | 'add' | 'update-max' | 'done';
   message: string;
 }
+
+export interface LongestPalindromeStep {
+  s: string;
+  center: number;
+  isEven: boolean;          // true = even center (i, i+1), false = odd center (i, i)
+  left: number;             // active expansion left pointer
+  right: number;            // active expansion right pointer
+  start: number;            // best start index found so far
+  end: number;              // best end index found so far
+  maxLength: number;        // maximum length of palindromic substring found so far
+  highlightedLine: number;
+  status: 'init' | 'center-step' | 'expanding' | 'match' | 'mismatch' | 'out-of-bounds' | 'update-max' | 'done';
+  message: string;
+}
+
+export interface RottingOrangesStep {
+  grid: number[][];              // 2D grid matrix state: 0=empty, 1=fresh, 2=rotten, 3=newly rotten in current layer
+  queue: [number, number][];     // active BFS coordinates queue
+  freshOranges: number;
+  minutes: number;
+  highlightedLine: number;
+  activePoint: [number, number] | null;  // active orange being processed
+  activeNeighbors: [number, number][];   // current neighbors being checked
+  rottedInThisRound: boolean;
+  status: 'init' | 'scan' | 'check-fresh' | 'bfs-loop' | 'pop-orange' | 'check-neighbors' | 'rot-orange' | 'increment-time' | 'done';
+  message: string;
+  activeRow?: number;            // Row index currently being scanned/processed (-1 if none)
+  activeCol?: number;            // Column index currently being scanned/processed (-1 if none)
+}
+
 
 
