@@ -1,0 +1,108 @@
+/* Search in Rotated Sorted Array Visualizer Styles */
+
+.array-bar {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.array-bar:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+/* Midpoint highlight heartbeat pulse */
+.active-mid .array-bar {
+  animation: mid-glow-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes mid-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.35);
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.65);
+    filter: brightness(1.2);
+    transform: scale(1.05);
+  }
+}
+
+/* Target element ping pulse */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.target-pulse {
+  pointer-events: none;
+}
+
+/* Pointer badges layout */
+.pointer-labels .pointer-badge {
+  display: inline-block;
+  animation: pointer-bob 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes pointer-bob {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Trace Inspector Dashboard Card styles */
+.trace-inspector-card {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inspector-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.45rem;
+}
+
+.inspector-eq {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--theme-text-primary);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.highlight-tag {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.text-active-var {
+  color: var(--theme-text-primary) !important;
+  opacity: 1 !important;
+  font-weight: 700;
+  animation: var-pulse 1s infinite alternate;
+}
+
+@keyframes var-pulse {
+  from { text-shadow: 0 0 2px rgba(255, 255, 255, 0.1); }
+  to { text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); }
+}
+
+.text-muted {
+  color: var(--theme-text-muted) !important;
+  opacity: 0.5;
+}

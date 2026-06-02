@@ -12,7 +12,7 @@ export interface AlgoStep {
 }
 
 export type Theme = 'purple' | 'cyan' | 'amber' | 'aurora';
-export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container' | 'longest-substring' | 'palindrome' | 'rotting-oranges';
+export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container' | 'longest-substring' | 'palindrome' | 'rotting-oranges' | 'search-rotated-sorted-array';
 
 export interface CoinChange2Step {
   coins: number[];
@@ -109,6 +109,17 @@ export interface RottingOrangesStep {
   message: string;
   activeRow?: number;            // Row index currently being scanned/processed (-1 if none)
   activeCol?: number;            // Column index currently being scanned/processed (-1 if none)
+}
+
+export interface SearchRotatedSortedArrayStep {
+  nums: number[];
+  target: number;
+  left: number;
+  right: number;
+  mid: number;
+  highlightedLine: number;
+  status: 'init' | 'check-bounds' | 'loop-header' | 'calc-mid' | 'found' | 'left-sorted' | 'right-sorted' | 'target-in-left' | 'target-in-right' | 'move-left' | 'move-right' | 'not-found' | 'done';
+  message: string;
 }
 
 

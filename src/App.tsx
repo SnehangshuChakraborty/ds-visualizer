@@ -17,6 +17,7 @@ import ContainerVisualizer from './components/problems/arrays/containerWithMostW
 import LongestSubstringVisualizer from './components/problems/strings/longestSubstringWithoutRepeatingCharacters/LongestSubstringVisualizer';
 import LongestPalindromeVisualizer from './components/problems/strings/longestPalindromicSubstring/LongestPalindromeVisualizer';
 import RottingOrangesVisualizer from './components/problems/arrays/rottingOranges/RottingOrangesVisualizer';
+import SearchRotatedSortedArrayVisualizer from './components/problems/arrays/searchRotatedSortedArray/SearchRotatedSortedArrayVisualizer';
 
 function App() {
   const [theme, setTheme] = useState<Theme>('purple');
@@ -89,6 +90,8 @@ function App() {
             <LongestPalindromeVisualizer celebrate={celebrate} />
           ) : selectedProblem === 'rotting-oranges' ? (
             <RottingOrangesVisualizer celebrate={celebrate} />
+          ) : selectedProblem === 'search-rotated-sorted-array' ? (
+            <SearchRotatedSortedArrayVisualizer celebrate={celebrate} />
           ) : (
             /* ========================================================================= */
             /* TWO SUM COMING SOON PREVIEW */
