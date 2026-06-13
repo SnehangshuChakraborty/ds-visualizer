@@ -18,6 +18,7 @@ import LongestSubstringVisualizer from './components/problems/strings/longestSub
 import LongestPalindromeVisualizer from './components/problems/strings/longestPalindromicSubstring/LongestPalindromeVisualizer';
 import RottingOrangesVisualizer from './components/problems/arrays/rottingOranges/RottingOrangesVisualizer';
 import SearchRotatedSortedArrayVisualizer from './components/problems/arrays/searchRotatedSortedArray/SearchRotatedSortedArrayVisualizer';
+import ValidSudokuVisualizer from './components/problems/arrays/validSudoku/ValidSudokuVisualizer';
 
 function App() {
   const [theme, setTheme] = useState<Theme>('purple');
@@ -92,6 +93,8 @@ function App() {
             <RottingOrangesVisualizer celebrate={celebrate} />
           ) : selectedProblem === 'search-rotated-sorted-array' ? (
             <SearchRotatedSortedArrayVisualizer celebrate={celebrate} />
+          ) : selectedProblem === 'valid-sudoku' ? (
+            <ValidSudokuVisualizer celebrate={celebrate} quizMode={quizMode} />
           ) : (
             /* ========================================================================= */
             /* TWO SUM COMING SOON PREVIEW */

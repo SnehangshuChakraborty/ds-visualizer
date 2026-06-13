@@ -1423,5 +1423,642 @@
   }
 }
 
+/* ===================================================================== */
+/* VALID SUDOKU VISUALIZER STYLES                                        */
+/* ===================================================================== */
+
+/* 9×9 Sudoku Grid */
+.sudoku-grid-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 4px;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1;
+}
+
+.sudoku-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--theme-text-primary);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.sudoku-cell.sudoku-cell-dot {
+  color: var(--theme-text-muted);
+  font-weight: 400;
+  opacity: 0.4;
+}
+
+/* Sub-box border accents */
+.sudoku-cell.sudoku-cell-box-left {
+  border-left: 2px solid rgba(var(--theme-accent-rgb), 0.35);
+}
+
+.sudoku-cell.sudoku-cell-box-top {
+  border-top: 2px solid rgba(var(--theme-accent-rgb), 0.35);
+}
+
+/* Active cell */
+.sudoku-cell.sudoku-cell-active {
+  background: rgba(var(--theme-accent-rgb), 0.25);
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 12px rgba(var(--theme-accent-rgb), 0.3);
+  transform: scale(1.08);
+  z-index: 2;
+  color: #ffffff;
+}
+
+/* Row/col/box highlight */
+.sudoku-cell.sudoku-cell-highlight {
+  background: rgba(var(--theme-accent-rgb), 0.06);
+  border-color: rgba(var(--theme-accent-rgb), 0.12);
+}
+
+/* Conflict cell — red flash */
+.sudoku-cell.sudoku-cell-conflict {
+  background: rgba(239, 68, 68, 0.3) !important;
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.5) !important;
+  animation: conflict-pulse 0.6s ease-in-out 3;
+  color: #ef4444 !important;
+}
+
+@keyframes conflict-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(239, 68, 68, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.7); }
+}
+
+/* Bitmask State Panel */
+.bitmask-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+}
+
+.bitmask-row-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.bitmask-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--theme-text-secondary);
+  min-width: 42px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bit-strip {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+
+.bit-slot {
+  flex: 1;
+  aspect-ratio: 1;
+  max-width: 30px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.bit-slot.bit-off {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--theme-text-muted);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.bit-slot.bit-on {
+  background: rgba(var(--theme-accent-rgb), 0.2);
+  color: var(--theme-accent);
+  border-color: rgba(var(--theme-accent-rgb), 0.4);
+  box-shadow: 0 0 8px rgba(var(--theme-accent-rgb), 0.15);
+}
+
+.bit-slot.bit-just-set {
+  background: rgba(16, 185, 129, 0.3) !important;
+  color: #10b981 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4) !important;
+  animation: bit-set-flash 0.5s ease;
+}
+
+@keyframes bit-set-flash {
+  0% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.bit-digit-label {
+  font-size: 0.5rem;
+  opacity: 0.5;
+  line-height: 1;
+}
+
+.bit-digit-value {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+/* Bitmask Shift Visualizer */
+.bitmask-shift-visualizer {
+  background: linear-gradient(135deg, rgba(var(--theme-accent-rgb), 0.06), rgba(0, 0, 0, 0.3));
+  border: 1.5px solid rgba(var(--theme-accent-rgb), 0.2);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  margin: 0.75rem 0;
+  animation: slide-up-quiz 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shift-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.shift-title code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.shift-animation-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.shift-before,
+.shift-after {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.shift-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--theme-text-secondary);
+  min-width: 30px;
+  text-align: right;
+}
+
+.shift-strip {
+  gap: 2px !important;
+}
+
+.shift-strip .bit-slot {
+  max-width: 24px;
+  min-width: 18px;
+}
+
+.shift-arrow {
+  font-size: 0.8rem;
+  color: var(--theme-accent);
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  background: rgba(var(--theme-accent-rgb), 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(var(--theme-accent-rgb), 0.2);
+  white-space: nowrap;
+}
+
+.bit-slot.bit-on.bit-shifted {
+  animation: bit-slide-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  border-color: #10b981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+@keyframes bit-slide-in {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-5%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.shift-analogy {
+  font-size: 0.8rem;
+  color: var(--theme-text-secondary);
+  line-height: 1.45;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  border-left: 3px solid var(--theme-accent);
+}
+
+.shift-analogy strong {
+  color: var(--theme-accent);
+}
+
+/* Pattern Spotlight Card */
+.pattern-spotlight {
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, rgba(var(--theme-accent-rgb), 0.05), rgba(16, 185, 129, 0.05));
+  border: 1px solid rgba(var(--theme-accent-rgb), 0.15);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+.pattern-spotlight-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+  margin-bottom: 0.5rem;
+}
+
+.pattern-spotlight-desc {
+  font-size: 0.85rem;
+  color: var(--theme-text-secondary);
+  line-height: 1.5;
+}
+
+.pattern-spotlight-desc strong {
+  color: var(--theme-text-primary);
+}
+
+.pattern-spotlight-desc code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* Box Index Visualizer */
+.box-index-visualizer {
+  background: linear-gradient(135deg, rgba(var(--theme-accent-rgb), 0.05), rgba(0, 0, 0, 0.4));
+  border: 1.5px solid rgba(var(--theme-accent-rgb), 0.15);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: slide-up-quiz 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.box-visualizer-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.box-visualizer-title code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.box-visualizer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.box-math-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--theme-text-secondary);
+}
+
+.box-math-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.box-math-highlight {
+  color: var(--theme-accent-secondary);
+  font-weight: 700;
+}
+
+.box-math-result {
+  color: var(--theme-highlight);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.mini-box-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 3px;
+  width: 90px;
+  height: 90px;
+}
+
+.mini-box-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--theme-text-muted);
+  transition: all 0.3s ease;
+}
+
+.mini-box-cell.active-box-cell {
+  background: rgba(var(--theme-accent-rgb), 0.4);
+  border-color: var(--theme-accent);
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(var(--theme-accent-rgb), 0.3);
+  transform: scale(1.05);
+}
+
+/* Bitwise Operator Visualizers (AND / OR) */
+.bitwise-op-visualizer {
+  background: linear-gradient(135deg, rgba(var(--theme-accent-rgb), 0.04), rgba(0, 0, 0, 0.45));
+  border: 1.5px solid rgba(var(--theme-accent-rgb), 0.15);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: slide-up-quiz 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bitwise-op-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bitwise-op-title code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.bitwise-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin: 0.25rem 0;
+}
+
+.bitwise-stack-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.bitwise-row-name {
+  min-width: 80px;
+  text-align: right;
+  color: var(--theme-text-secondary);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.bitwise-bits {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+
+.bitwise-bit-slot {
+  flex: 1;
+  aspect-ratio: 1;
+  max-width: 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--theme-text-muted);
+}
+
+.bitwise-bit-slot.bit-active {
+  background: rgba(var(--theme-accent-rgb), 0.15);
+  border-color: rgba(var(--theme-accent-rgb), 0.3);
+  color: var(--theme-text-primary);
+}
+
+.bitwise-bit-slot.bit-highlight-active {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  color: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+}
+
+.bitwise-bit-slot.bit-highlight-match {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: #10b981;
+  color: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.bitwise-stack-divider {
+  width: 100%;
+  max-width: 225px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin-left: 80px;
+  align-self: flex-start;
+}
+
+/* Bitmask Panel View Toggle Tabs */
+.bitmask-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.5rem;
+}
+
+.bitmask-view-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  padding: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bitmask-view-tab {
+  background: transparent;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--theme-text-secondary);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bitmask-view-tab.active {
+  background: var(--theme-accent);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(var(--theme-accent-rgb), 0.25);
+}
+
+/* Full Tracker Matrix Grid */
+.tracker-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.tracker-matrix-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.matrix-column-title {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.matrix-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.matrix-row.active-matrix-row {
+  background: rgba(var(--theme-accent-rgb), 0.08);
+  border-color: rgba(var(--theme-accent-rgb), 0.2);
+}
+
+.matrix-row-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--theme-text-muted);
+  min-width: 18px;
+}
+
+.matrix-row.active-matrix-row .matrix-row-label {
+  color: var(--theme-text-primary);
+}
+
+.matrix-bits {
+  display: flex;
+  gap: 2px;
+  flex-grow: 1;
+}
+
+.matrix-bit-dot {
+  flex: 1;
+  height: 8px;
+  border-radius: 1.5px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+}
+
+.matrix-bit-dot.bit-on {
+  background: var(--theme-accent);
+  border-color: rgba(var(--theme-accent-rgb), 0.3);
+  box-shadow: 0 0 4px rgba(var(--theme-accent-rgb), 0.25);
+}
+
+.matrix-row.active-matrix-row .matrix-bit-dot.bit-on {
+  background: var(--theme-accent-secondary);
+}
 
 
