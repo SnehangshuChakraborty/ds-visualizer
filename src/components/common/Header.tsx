@@ -33,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
         {/* Active gamified quiz toggle (Only show when 3Sum is active) */}
-        {selectedProblem === '3sum' && (
+        {(selectedProblem === '3sum' || selectedProblem === 'valid-sudoku') && (
           <button
             className={`random-btn ${quizMode ? 'active' : ''}`}
             onClick={() => {

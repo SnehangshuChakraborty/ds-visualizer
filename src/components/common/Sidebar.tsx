@@ -86,6 +86,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </li>
           <li>
             <button
+              className={`sidebar-item-btn ${selectedProblem === 'valid-sudoku' ? 'active' : ''}`}
+              onClick={() => setSelectedProblem('valid-sudoku')}
+            >
+              <span>Valid Sudoku (36)</span>
+              <span className="sidebar-item-bullet"></span>
+            </button>
+          </li>
+          <li>
+            <button
               className={`sidebar-item-btn ${selectedProblem === '2sum' ? 'active' : ''}`}
               onClick={() => setSelectedProblem('2sum')}
             >

@@ -12,7 +12,7 @@ export interface AlgoStep {
 }
 
 export type Theme = 'purple' | 'cyan' | 'amber' | 'aurora';
-export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container' | 'longest-substring' | 'palindrome' | 'rotting-oranges' | 'search-rotated-sorted-array';
+export type ProblemType = '3sum' | '2sum' | 'median' | 'coinchange2' | 'container' | 'longest-substring' | 'palindrome' | 'rotting-oranges' | 'search-rotated-sorted-array' | 'valid-sudoku';
 
 export interface CoinChange2Step {
   coins: number[];
@@ -123,4 +123,21 @@ export interface SearchRotatedSortedArrayStep {
 }
 
 
+export interface ValidSudokuStep {
+  board: string[][];                 // 9x9 board state (char[][])
+  row: number;                       // current r
+  col: number;                       // current c
+  val: number;                       // board[r][c] - '1' (0–8), or -1 if '.'
+  boxIdx: number;                    // (r/3)*3 + (c/3)
+  mask: number;                      // 1 << val
+  rows: number[];                    // bitmask state for each row (9 ints)
+  cols: number[];                    // bitmask state for each col (9 ints)
+  boxes: number[];                   // bitmask state for each box (9 ints)
+  highlightedLine: number;           // Java source line to glow
+  status: 'start' | 'scan-cell' | 'skip-dot' | 'calc-val' | 'calc-box' | 'calc-mask'
+        | 'check-conflict' | 'conflict-found' | 'set-bits' | 'done-valid' | 'done-invalid';
+  message: string;                   // narrative explanation
+  conflictType: 'row' | 'col' | 'box' | null;  // which check failed
+  isValid: boolean;                  // running validity verdict
+}
 
